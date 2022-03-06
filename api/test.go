@@ -2,12 +2,14 @@ package api
 
 import (
 	"io"
+	"log"
 	"net/http"
 )
 
 func Test(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	kind := r.URL.Query().Get("kind")
+	log.Println("<Test>", kind)
 	switch kind {
 	case "int":
 		io.WriteString(w, NewOkResp(10086).JsonString())
@@ -31,8 +33,13 @@ func Test(w http.ResponseWriter, r *http.Request) {
 			Height: 178.9,
 			IsVip:  true,
 		}).JsonString())
+
+	case "empty":
+		io.WriteString(w, NewOkResp(nil).JsonString())
+	case "null":
+		io.WriteString(w, "null")
 	default:
-		io.WriteString(w, NewOkResp([]string{"int", "float", "bool", "string", "array", "json"}).JsonString())
+		io.WriteString(w, NewOkResp([]string{"int", "float", "bool", "string", "array", "json", "empty", "null"}).JsonString())
 	}
 
 }

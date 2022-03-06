@@ -40,6 +40,7 @@ func AppBuyu(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 
 	val, ok := client.Get(buyu_key)
+	log.Println("<AppBuyu> cache", val, ok)
 	if ok {
 		io.WriteString(w, NewOkResp(val).JsonString())
 		return

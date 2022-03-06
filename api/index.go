@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/patrickmn/go-cache"
 	"io"
+	"log"
 	"net/http"
 	"time"
 )
@@ -16,6 +17,7 @@ func init() {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
+	log.Println("<Index>")
 	w.Header().Set("content-type", "application/json")
 	io.WriteString(w, "hello world!")
 }
