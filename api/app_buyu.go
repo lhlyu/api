@@ -36,7 +36,7 @@ type RespBuyuVersion struct {
 	Prerelease bool   `json:"prerelease"`
 }
 
-func BuyuVersion(w http.ResponseWriter, r *http.Request) {
+func AppBuyu(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 
 	val, ok := client.Get(buyu_key)
